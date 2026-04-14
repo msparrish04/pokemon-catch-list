@@ -41,3 +41,41 @@ async function loadPokemon() {
         console.error("Error fetching Pokémon:", error);
     }
 }
+
+function renderGrid(pokemonList) {
+    const grid = document.getElementById('pokedex-grid');
+    grid.innerHTML = ''; // Clear current grid
+
+    pokemonList.forEach((pokemon, index) => {
+        const pokemonId = index + 1 + currentGame.offset;
+        const isCaught = caughtPokemon.includes(pokemonId);
+
+        const card = document.createElement('div');
+        card.className = `pokemon-card ${isCaught ? 'caught' : ''}`;
+        
+        card.innerHTML = `
+            <span class="dex-id">#${pokemonId}</span>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png" alt="${pokemon.name}">
+            <p class="name">${pokemon.name}</p>
+        `;
+
+        card.onclick = () => toggleCatch(pokemonId);
+        grid.appendChild(card);
+    });
+}
+
+function toggleCatch(id) {
+    if (caughtPokemon.includes(id)) {
+        // Remove from list if already there
+        caughtPokemon = caughtPokemon.filter(pId => pId !== id);
+    } else {
+        // Add to list if missing
+        caughtPokemon.push(id);
+    }
+
+    localStorage.setItem(currentGame.storageKey, JSON.stringify(caughtPokemon));
+    
+    renderGrid(cachedPokemonList);
+}
+
+loadPokemon();
