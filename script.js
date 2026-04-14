@@ -79,3 +79,13 @@ function toggleCatch(id) {
 }
 
 loadPokemon();
+
+
+/* 
+TODO:
+- Add progress bar
+- Add shiny tracker
+- Implement all other games
+- Implement search bar
+- Let user add catch notes and other stats
+*/
