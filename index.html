@@ -22,6 +22,32 @@
 
     <main id="pokedex-grid"></main>
 
+    <div id="detail-modal" class="hidden">
+        <div class="modal-content">
+            <span id="modal-close">&times;</span>
+            <img id="modal-img" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <span id="modal-id"></span>
+
+            <div class="modal-toggles">
+                <label>
+                    <input type="checkbox" id="modal-caught"> Caught
+                </label>
+                <label>
+                    <input type="checkbox" id="modal-shiny"> ⭐ Shiny
+                </label>
+            </div>
+
+            <div class="modal-gender">
+                <label><input type="radio" name="gender" value="male"> ♂ Male</label>
+                <label><input type="radio" name="gender" value="female"> ♀ Female</label>
+                <label><input type="radio" name="gender" value="unknown"> Unknown</label>
+            </div>
+
+            <textarea id="modal-notes" placeholder="Notes..."></textarea>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
