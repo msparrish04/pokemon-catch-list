@@ -62,6 +62,8 @@ function renderGrid(pokemonList) {
         card.onclick = () => toggleCatch(pokemonId);
         grid.appendChild(card);
     });
+
+    updateProgress();
 }
 
 function toggleCatch(id) {
@@ -80,10 +82,17 @@ function toggleCatch(id) {
 
 loadPokemon();
 
+function updateProgress() {
+    const total = currentGame.limit;
+    const caughtCount = caughtPokemon.length;
+    const percent = total > 0 ? Math.round((caughtCount / total) * 100) : 0;
+
+    document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+    document.getElementById('progress-text').innerText = `${caughtCount} / ${total} caught (${percent}%)`;
+}
 
 /* 
 TODO:
-- Add progress bar
 - Add shiny tracker
 - Implement all other games
 - Implement search bar
